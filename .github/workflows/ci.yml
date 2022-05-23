@@ -24,7 +24,7 @@ jobs:
           # Our NPM dependencies are saved in package-lock file -> if anything in this file changes, it means that some dependency has changed -> new cache need to be generated using "hashFiles" function
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           # an extra key that GitHub use to search for caches at if it did not find any caches using this main "key".
-          restore-key: |
+          restore-keys: |
             ${{ runner.os }}-node-
       - name: Install dependencies
         run: npm install
