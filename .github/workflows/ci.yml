@@ -34,9 +34,26 @@ jobs:
         run: npm run test -- --coverage
         env:
           CI: true
+      - name: Upload test coverage as an artifact
+        # upload artifacts that created by workflow allows us to share data between jobs or store data once a workflow is complete
+        uses: actions/upload-artifact@v1
+        with:
+          # artifact's name
+          name: code-coverage
+          # path to the folder where we want to update the artifact to
+          path: ./coverage
       - name: Build project
         if: github.event_name == 'push'
         run: npm run build
+      - name: Upload delivery package as an artifact
+        if: github.event_name == 'push'
+        uses: actions/upload-artifact@v1
+        with:
+          name: delivery-package
+          path: ./build
+      - name: Download artifacts
+        # download artifacts actions allows us to download artifacts which created by own workflow
+        uses: actions/download-artifact@v1
       - name: Install surge
         if: github.event_name == 'push'
         run: npm install -g surge
