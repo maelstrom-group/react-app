@@ -26,8 +26,8 @@ jobs:
           # an extra key that GitHub use to search for caches at if it did not find any caches using this main "key". For example, when there is any changes in dependencies management file, cache application detect it and create new cache key, so the previous cache can't be restored -> in this case, cache application uses restore-keys to restore the old caches, update dependencies based on newly updated file and stores them with new cache key.
           restore-keys: |
             ${{ runner.os }}-node-
-      - name: Install dependencies
-        run: npm install
+      # - name: Install dependencies
+      #   run: npm install
       - name: Check code formatting
         run: npm run format:check
       - name: Run test
@@ -51,11 +51,11 @@ jobs:
         with:
           name: delivery-package
           path: ./build
-      - name: Download artifacts
-        # download artifacts actions allows us to download artifacts which created by own workflow
-        uses: actions/download-artifact@v1
-        with:
-          name: code-coverage
+      # - name: Download artifacts
+      # download artifacts actions allows us to download artifacts which created by own workflow
+      # uses: actions/download-artifact@v1
+      # with:
+      #   name: code-coverage
       - name: Install surge
         if: github.event_name == 'push'
         run: npm install -g surge
