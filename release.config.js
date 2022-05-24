@@ -7,6 +7,15 @@ module.exports = {
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
     //be responsible for creating a GitHub release
-    "@semantic-release/github",
+    [
+      "@semantic-release/github",
+      {
+        // these assets should be a file not a folder, because our code coverage and build they are folders, so we have to compress them first in the workflow before uploading them as assets
+        assets: [
+          { path: "build.zip", label: "Build" },
+          { path: "coverage.zip", label: "Coverage" },
+        ],
+      },
+    ],
   ],
 };

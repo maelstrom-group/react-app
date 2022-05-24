@@ -56,6 +56,11 @@ jobs:
       # uses: actions/download-artifact@v1
       # with:
       #   name: code-coverage
+      - name: ZIP assets
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        run: |
+          zip -r build.zip ./build
+          zip -r coverage.zip ./coverage
       - name: Create a Release
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: npx semantic-release
