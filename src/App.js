@@ -6,7 +6,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>Redeploy new release - 0.0.5</p>
+        <p>Redeploy new release - 0.0.6</p>
         <a
           className="App-link"
           href="https://reactjs.org"
