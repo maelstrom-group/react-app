@@ -77,4 +77,4 @@ jobs:
         run: surge --project ./build --domain enormous-sugar.surge.sh/
       - name: Deploy to Production
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-        run: surge --project ./build --domain juvenile-donkey.surge.sh//
+        run: surge --project ./build --domain juvenile-donkey.surge.sh/
